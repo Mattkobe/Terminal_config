@@ -158,7 +158,8 @@ app_install $app $install $zshrc
 ## zsh
 app='zsh'
 install='apt-get install -y zsh '$VERBOSE' && \
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended '$VERBOSE''
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended '$VERBOSE' && \
+sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="agnoster"/g" ~/.zshrc '$VERBOSE''
 zshrc=''
 app_install $app $install $zshrc
 
@@ -281,8 +282,7 @@ curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF
 curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Italic.ttf
 curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Bold%20Italic.ttf
 app='powerlevel10k'
-install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k '$VERBOSE' && \
-sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"powerlevel10k/powerlevel10k\"/g" ~/.zshrc '$VERBOSE''
+install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k '$VERBOSE''
 zshrc=''
 app_install $app $install $zshrc
 
