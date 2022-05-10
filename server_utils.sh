@@ -282,8 +282,8 @@ curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF
 curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Italic.ttf
 curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Bold%20Italic.ttf
 app='powerlevel10k'
-install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k '$VERBOSE' && \
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc '$VERBOSE'' 
+install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k '$VERBOSE''
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 zshrc=''
 app_install $app $install $zshrc
 
