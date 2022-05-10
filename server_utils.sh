@@ -282,7 +282,8 @@ curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF
 curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Italic.ttf
 curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Bold%20Italic.ttf
 app='powerlevel10k'
-install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k '$VERBOSE''
+install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k '$VERBOSE' && \
+echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc '$VERBOSE'' 
 zshrc=''
 app_install $app $install $zshrc
 
@@ -315,6 +316,7 @@ if [[ "$ALLUSERS" == 1 ]]; then
     copy_to_usershome /root/.oh-my-zsh .
     copy_to_usershome /root/.zsh .
     copy_to_usershome /root/.zshrc .
+    copy_to_usershome /root/powerlevel10k .
     zsh_all_users
 fi
 
