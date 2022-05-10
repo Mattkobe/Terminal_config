@@ -10,7 +10,7 @@ for argument in "$@"; do
             echo " ✅ Verbose selected"
             VERBOSE=" "   
         elif [ $argument == "--help" ]; then
-            echo 'This script installs differents tools for the Shell (Check https://github.com/PAPAMICA/terminal).
+            echo 'This script installs differents tools for the Shell.
         Use "--verbose" to display the logs
         Use "--motd" to update your motd
         Use "--all-users" to apply all modifications to alls users'
@@ -113,7 +113,6 @@ if [[ "$MOTD" == 1 ]]; then
     rm -rf /etc/motd /etc/update-motd.d/*
     touch /etc/update-motd.d/00-motd && chmod +x /etc/update-motd.d/00-motd
     echo "#!/bin/sh
-#By Mickael (PAPAMICA) Asseline
 figlet $(uname -n | cut -d '.' -f 1)
 neofetch --config /etc/neofetch/config.conf" >> /etc/update-motd.d/00-motd
     echo " ✅ MOTD have been configured !"
@@ -160,7 +159,7 @@ app_install $app $install $zshrc
 app='zsh'
 install='apt-get install -y zsh '$VERBOSE' && \
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended '$VERBOSE' && \
-sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="agnoster"/g" ~/.zshrc '$VERBOSE''
+## sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="agnoster"/g" ~/.zshrc '$VERBOSE''
 zshrc=''
 app_install $app $install $zshrc
 
@@ -261,12 +260,6 @@ install='pip3 install thefuck  '$VERBOSE''
 zshrc='eval $(thefuck --alias)'
 app_install $app $install $zshrc
 
-## micro
-app='micro'
-install='su - root -c "cd /usr/bin; wget -O- https://getmic.ro | GETMICRO_REGISTER=y sh; cd ~" '$VERBOSE''
-zshrc=''
-app_install $app $install $zshrc
-
 ## ripgrep
 app='rg'
 install='curl -s https://api.github.com/repos/BurntSushi/ripgrep/releases/latest \
@@ -296,6 +289,31 @@ app='zsh_syntax_highlighting'
 install='git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting '$VERBOSE''
 zshrc='source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh'
 app_install $app $install $zshrc
+
+## powerlevel10k
+# Fonts
+mkdir -p ~/.fonts
+curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf" >> ~/.fonts/MesloLGS%20NF%20Regular.ttf
+curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf" >> ~/.fonts/MesloLGS%20NF%20Bold.ttf
+curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Italic.ttf
+curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Bold%20Italic.ttf
+app='powerlevel10k'
+install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k '$VERBOSE''
+zshrc='sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="powerlevel10k/powerlevel10k"/g" ~/.zshrc '$VERBOSE''
+app_install $app $install $zshrc
+
+## Neovim
+app='Neovim'
+install='apt install -y neovim '$VERBOSE''
+zshrc='alias vim="nvim"
+alias vi="nvim"'
+mkdir ~/.config/nvim
+
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs [https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
+app_install $app $install $zshrc
+
+
+
 
 ## Copy to others users
 if [[ "$ALLUSERS" == 1 ]]; then
