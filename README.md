@@ -1,1 +1,1 @@
-Hello World !
+curl -Ls https://raw.githubusercontent.com/PAPAMICA/terminal/main/server_utils.sh | bash -s -- --all-users
