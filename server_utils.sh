@@ -202,24 +202,6 @@ alias btop="btop --utf-force"
 alias htop="btop --utf-force"'
 app_install $app $install $zshrc
 
-## cheat
-app='cheat'
-install='curl -s https://api.github.com/repos/cheat/cheat/releases/latest \
-| grep "browser_download_url.*cheat-linux-amd64.gz" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -qi - && \chdea
-gzip -d cheat-linux-amd64.gz '$VERBOSE' && \
-chmod +x cheat-linux-amd64 && mv cheat-linux-amd64 /usr/local/bin/cheat && rm -rf cheat-linux-amd64* && \
-git clone https://github.com/PAPAMICA/cheatsheets.git ~/.config/cheat/cheatsheets/papamica/ '$VERBOSE' && \
-curl -s "https://raw.githubusercontent.com/PAPAMICA/terminal/main/cheat_conf.yml" >> ~/.config/cheat/conf.yml && \
-curl -s "https://raw.githubusercontent.com/PAPAMICA/terminal/main/cheat_autocomplete.zsh" >> ~/.oh-my-zsh/custom/cheat.zsh && \ 
-mkdir ~/.config/cheat/cheatsheets/personal/'
-zshrc="alias \"?\"=\"cheat\"
-alias \"??\"=\"cheat perso\"
-alias cheat-update='git -C ~/.config/cheat/cheatsheets/papamica/ pull > /dev/null 2> /dev/null && echo \" ✅ Cheats updated !\"'"
-app_install $app $install $zshrc
-
 ## direnv
 app='direnv'
 install='apt install -y direnv '$VERBOSE''
@@ -310,7 +292,7 @@ install='apt install -y neovim '$VERBOSE''
 zshrc='alias vim="nvim"
 alias vi="nvim"'
 mkdir ~/.config/nvim
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs [https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
+#curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs [https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
 curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/nvim/init.vim" >> ~/.config/nvim/init.vim
 app_install $app $install $zshrc
 
@@ -321,7 +303,6 @@ install='apt install -y tmux '$VERBOSE''
 zshrc='alias vim="nvim"
 alias vi="nvim"'
 mkdir ~/.config/nvim
-curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs [https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
 curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/tmux.conf" >> ~/.tmux.conf
 app_install $app $install $zshrc
 
