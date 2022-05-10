@@ -300,9 +300,7 @@ app_install $app $install $zshrc
 ## Tmux
 app='tmux'
 install='apt install -y tmux '$VERBOSE''
-zshrc='alias vim="nvim"
-alias vi="nvim"'
-mkdir ~/.config/nvim
+zshrc='sed -i -e "s/plugins=(git)/plugins=(git tmux history common-aliases)/g" ~/.zshrc '$VERBOSE''
 curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/tmux.conf" >> ~/.tmux.conf
 app_install $app $install $zshrc
 
@@ -314,6 +312,7 @@ if [[ "$ALLUSERS" == 1 ]]; then
     echo "-- OTHERS USERS --"
     copy_to_usershome /root/.config/cheat .config
     copy_to_usershome /root/.config/nvim .config
+    copy_to_usershome /root/.tmux.conf .
     copy_to_usershome /root/.oh-my-zsh .
     copy_to_usershome /root/.zsh .
     copy_to_usershome /root/.zshrc .
