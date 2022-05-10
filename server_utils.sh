@@ -158,8 +158,7 @@ app_install $app $install $zshrc
 ## zsh
 app='zsh'
 install='apt-get install -y zsh '$VERBOSE' && \
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended '$VERBOSE' && \
-## sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="agnoster"/g" ~/.zshrc '$VERBOSE''
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended '$VERBOSE''
 zshrc=''
 app_install $app $install $zshrc
 
