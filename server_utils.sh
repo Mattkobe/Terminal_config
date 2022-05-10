@@ -306,8 +306,6 @@ curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/
 zshrc=''
 app_install $app $install $zshrc
 
-
-
 ## Copy to others users
 if [[ "$ALLUSERS" == 1 ]]; then
     echo ""
@@ -320,6 +318,6 @@ if [[ "$ALLUSERS" == 1 ]]; then
     zsh_all_users
 fi
 
-chsh --shell /bin/zsh root
+chsh --shell /usr/bin/zsh root
 localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 zsh
