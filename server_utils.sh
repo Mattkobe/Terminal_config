@@ -172,8 +172,7 @@ app_install $app $install $zshrc
 app='atuin'
 install='bash -c "$(curl -s https://raw.githubusercontent.com/ellie/atuin/main/install.sh)" '$VERBOSE' && \
 atuin import auto '$VERBOSE''
-zshrc='# Atuin
-export ATUIN_NOBIND="true"
+zshrc='export ATUIN_NOBIND="true"
 eval "$(atuin init zsh)"
 bindkey '^r' _atuin_search_widget'
 app_install $app $install $zshrc
@@ -282,8 +281,9 @@ curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF
 curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Italic.ttf
 curl -s "https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf" >> ~/.fonts/MesloLGS%20NF%20Bold%20Italic.ttf
 app='powerlevel10k'
-install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k '$VERBOSE''
-zshrc='sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="powerlevel10k/powerlevel10k"/g" ~/.zshrc '$VERBOSE''
+install='git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k '$VERBOSE' && \
+sed -i -e "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME="powerlevel10k/powerlevel10k"/g" ~/.zshrc '$VERBOSE''
+zshrc=''
 app_install $app $install $zshrc
 
 ## Neovim
@@ -299,9 +299,10 @@ app_install $app $install $zshrc
 
 ## Tmux
 app='tmux'
-install='apt install -y tmux '$VERBOSE''
-zshrc='sed -i -e "s/plugins=(git)/plugins=(git tmux history common-aliases)/g" ~/.zshrc '$VERBOSE''
+install='apt install -y tmux '$VERBOSE' && \
+sed -i -e "s/plugins=(git)/plugins=(git tmux history common-aliases)/g" ~/.zshrc '$VERBOSE''
 curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/tmux.conf" >> ~/.tmux.conf
+zshrc=''
 app_install $app $install $zshrc
 
 
