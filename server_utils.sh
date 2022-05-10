@@ -104,9 +104,9 @@ if [[ "$MOTD" == 1 ]]; then
     echo " 🤖 Installing  MOTD..."
     eval apt-get install -y neofetch figlet $VERBOSE
     mkdir -p /root/.config/neofetch && touch /root/.config/neofetch/config.conf
-    curl -s https://raw.githubusercontent.com/PAPAMICA/terminal/main/neofetch.conf > /root/.config/neofetch/config.conf
+    curl -s https://raw.githubusercontent.com/Mattkobe/terminal_config/main/neofetch.conf > /root/.config/neofetch/config.conf
     mkdir -p /etc/neofetch && touch /etc/neofetch/config.conf
-    curl -s https://raw.githubusercontent.com/PAPAMICA/terminal/main/neofetch.conf > /etc/neofetch/config.conf
+    curl -s https://raw.githubusercontent.com/Mattkobe/terminal_config/main/neofetch.conf > /etc/neofetch/config.conf
     if [[ "$ALLUSERS" == 1 ]]; then
         copy_to_usershome /root/.config/neofetch/ .config
     fi
@@ -173,7 +173,10 @@ app_install $app $install $zshrc
 app='atuin'
 install='bash -c "$(curl -s https://raw.githubusercontent.com/ellie/atuin/main/install.sh)" '$VERBOSE' && \
 atuin import auto '$VERBOSE''
-zshrc='eval "$(atuin init zsh)"'
+zshrc='# Atuin
+export ATUIN_NOBIND="true"
+eval "$(atuin init zsh)"
+bindkey '^r' _atuin_search_widget'
 app_install $app $install $zshrc
 
 ## bat
@@ -308,10 +311,20 @@ install='apt install -y neovim '$VERBOSE''
 zshrc='alias vim="nvim"
 alias vi="nvim"'
 mkdir ~/.config/nvim
-
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs [https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
+curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/nvim/init.vim" >> ~/.config/nvim/init.vim
 app_install $app $install $zshrc
 
+
+## Tmux
+app='tmux'
+install='apt install -y tmux '$VERBOSE''
+zshrc='alias vim="nvim"
+alias vi="nvim"'
+mkdir ~/.config/nvim
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs [https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
+curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/tmux.conf" >> ~/.tmux.conf
+app_install $app $install $zshrc
 
 
 
@@ -320,6 +333,7 @@ if [[ "$ALLUSERS" == 1 ]]; then
     echo ""
     echo "-- OTHERS USERS --"
     copy_to_usershome /root/.config/cheat .config
+    copy_to_usershome /root/.config/nvim .config
     copy_to_usershome /root/.oh-my-zsh .
     copy_to_usershome /root/.zsh .
     copy_to_usershome /root/.zshrc .
