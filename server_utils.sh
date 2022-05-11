@@ -292,11 +292,11 @@ app_install $app $install $zshrc
 
 ## Neovim
 app='Neovim'
-install='apt install -y neovim '$VERBOSE''
+install='wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb && chmod +x ./nvim-linux64.deb && sudo apt install -y ./nvim-linux64.deb '$VERBOSE''
 zshrc='alias vim="nvim"
 alias vi="nvim"'
 mkdir ~/.config/nvim
-#curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs [https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim](https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim)
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/nvim/init.vim" >> ~/.config/nvim/init.vim
 app_install $app $install $zshrc
 
