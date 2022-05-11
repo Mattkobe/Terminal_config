@@ -173,11 +173,12 @@ app_install $app $install $zshrc
 app='atuin'
 install='bash -c "$(curl -s https://raw.githubusercontent.com/ellie/atuin/main/install.sh)" '$VERBOSE' && \
 atuin import auto '$VERBOSE' && \
-sed -i -e "s/eval "$(atuin init zsh)"//g" ~/.zshrc '$VERBOSE''
-zshrc='export ATUIN_NOBIND="true"
-eval "$(atuin init zsh)"
-bindkey '^r' _atuin_search_widget'
+sed -i "/atuin init zsh/d" ~/.zshrc '$VERBOSE''
+zshrc=''
 app_install $app $install $zshrc
+printf '\nexport ATUIN_NOBIND="true"\n' >> ~/.zshrc
+printf 'eval "$(atuin init zsh)"\n' >> ~/.zshrc
+printf "bindkey '^r' _atuin_search_widget\n" >> ~/.zshrc
 
 ## bat
 app='batcat'
