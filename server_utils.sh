@@ -172,7 +172,8 @@ app_install $app $install $zshrc
 ## atuin
 app='atuin'
 install='bash -c "$(curl -s https://raw.githubusercontent.com/ellie/atuin/main/install.sh)" '$VERBOSE' && \
-atuin import auto '$VERBOSE''
+atuin import auto '$VERBOSE' && \
+sed -i -e "s/eval "$(atuin init zsh)"//g" ~/.zshrc '$VERBOSE''
 zshrc='export ATUIN_NOBIND="true"
 eval "$(atuin init zsh)"
 bindkey '^r' _atuin_search_widget'
