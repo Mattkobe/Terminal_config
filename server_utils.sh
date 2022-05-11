@@ -292,7 +292,7 @@ app_install $app $install $zshrc
 
 ## Neovim
 app='Neovim'
-install='wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb && chmod +x ./nvim-linux64.deb && sudo apt install -y ./nvim-linux64.deb '$VERBOSE''
+install='wget -q https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb && chmod +x ./nvim-linux64.deb && sudo apt install -y ./nvim-linux64.deb '$VERBOSE''
 zshrc='alias vim="nvim"
 alias vi="nvim"'
 mkdir ~/.config/nvim
