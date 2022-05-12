@@ -60,3 +60,4 @@ set nomodeline
 set spell
 
 let g:airline_powerline_fonts = 1
+set guicursor=a:blinkon1
