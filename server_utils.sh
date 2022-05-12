@@ -304,7 +304,7 @@ app_install $app $install $zshrc
 ## Tmux
 app='tmux'
 install='apt install -y tmux '$VERBOSE' && \
-sed -i -e "s/plugins=(git)/plugins=(git tmux history common-aliases)/g" ~/.zshrc '$VERBOSE' && \
+sed -i -e "s/plugins=(git)/plugins=(git tmux history dirhistory common-aliases)/g" ~/.zshrc '$VERBOSE' && \
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm '$VERBSOE''
 curl -s "https://raw.githubusercontent.com/Mattkobe/terminal_config/main/config/tmux.conf" >> ~/.tmux.conf
 zshrc=''
